@@ -20,4 +20,5 @@ DRUG_CATALOG = {
     "Fasenra": "Respiratory",
     "Jascayd": "Respiratory",
     "Austedo": "Neurology",
+    "Xtandi": "Oncology",
 }

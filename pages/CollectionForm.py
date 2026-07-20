@@ -29,6 +29,7 @@ def create_table():
             drug_name              TEXT,
             category               TEXT,
             counseling             TEXT,
+            language               TEXT,
             depression_survey      TEXT,
             adherence_survey       TEXT,
             food_insecurity_survey TEXT,
@@ -52,6 +53,7 @@ def save_entry(entry):
         entry["drug_name"],
         entry["category"],
         entry["counseling"],
+        entry["language"],
         entry["depression_survey"],
         entry["adherence_survey"],
         entry["food_insecurity_survey"],
@@ -82,6 +84,7 @@ with st.form("data_collection_form"):
 
     drug_name = st.selectbox("Select medication", list(DRUG_CATALOG.keys()))
     counseling = st.radio("Counseling given?", ("Yes", "No"))
+    language = st.selectbox("Language of counseling", ("English", "Spanish", "Vietnamese", "Russian", "Lao", "Other"))
     depression_survey = st.radio("Depression Survey given?", ("Yes", "No"))
     adherence_survey = st.radio("Adherence Survey given?", ("Yes", "No"))
     food_insecurity_survey = st.radio("Food Insecurity Survey given?", ("Yes", "No"))
@@ -99,6 +102,7 @@ with st.form("data_collection_form"):
             "drug_name": drug_name,
             "category": DRUG_CATALOG.get(drug_name, "Uncategorized"),
             "counseling": counseling,
+            "language": language,
             "depression_survey": depression_survey,
             "adherence_survey": adherence_survey,
             "food_insecurity_survey": food_insecurity_survey,
