@@ -11,9 +11,8 @@ from drug_data import DRUG_CATALOG
 st.set_page_config(page_title="Data Collection", page_icon="📋", layout="wide")
 
 # ---- simple password protection ----
-password = st.text_input("This form is password-protected to ensure data integrity.", type="password")
-
-if password != "SweetPotato123!":
+password = st.text_input("Enter password to access this form", type="password")
+if password != st.secrets["form_password"]:
     st.warning("Please enter the correct password to access this form.")
     st.stop()
 
@@ -71,7 +70,7 @@ create_table()
 # ---- header ----
 st.title("📋 Clinical Encounter Data Collection")
 
-with st.expander("ℹ️ About this form"):
+with st.expander("About this Form"):
     st.markdown("""
     This form documents patient interaction sessions conducted during specialty pharmacy 
     patient management program calls.

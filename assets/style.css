@@ -1,0 +1,115 @@
+/* ---- base dark theme ---- */
+.stApp {
+    background-color: #0f1117;
+    color: #ffffff;
+}
+
+/* ---- sidebar ---- */
+section[data-testid="stSidebar"] {
+    background-color: #1a1d27;
+    border-right: 1px solid #2a2d3a;
+}
+
+/* ---- metric cards ---- */
+div[data-testid="metric-container"] {
+    background-color: #1a1d27;
+    border: 1px solid #2a2d3a;
+    border-radius: 12px;
+    padding: 16px 20px;
+}
+
+div[data-testid="metric-container"] label {
+    color: #888899 !important;
+    font-size: 13px !important;
+}
+
+div[data-testid="metric-container"] div[data-testid="stMetricValue"] {
+    color: #4FC3F7 !important;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+}
+
+div[data-testid="metric-container"] div[data-testid="stMetricDelta"] {
+    color: #1D9E75 !important;
+}
+
+/* ---- headings ---- */
+h1, h2, h3 {
+    color: #ffffff !important;
+}
+
+h1 {
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    border-bottom: 2px solid #4FC3F7;
+    padding-bottom: 8px;
+}
+
+/* ---- divider ---- */
+hr {
+    border-color: #2a2d3a !important;
+}
+
+/* ---- dataframe ---- */
+div[data-testid="stDataFrame"] {
+    border: 1px solid #2a2d3a;
+    border-radius: 8px;
+}
+
+/* ---- buttons ---- */
+div[data-testid="stDownloadButton"] button {
+    background-color: #4FC3F7 !important;
+    color: #0f1117 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+}
+
+div[data-testid="stDownloadButton"] button:hover {
+    background-color: #29B6F6 !important;
+}
+
+/* ---- form submit button ---- */
+div[data-testid="stFormSubmitButton"] button {
+    background-color: #4FC3F7 !important;
+    color: #0f1117 !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    width: 100% !important;
+}
+
+/* ---- info boxes ---- */
+div[data-testid="stInfo"] {
+    background-color: #1a2a3a !important;
+    border: 1px solid #4FC3F7 !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+}
+
+/* ---- success boxes ---- */
+div[data-testid="stSuccess"] {
+    background-color: #1a2a1a !important;
+    border: 1px solid #1D9E75 !important;
+    border-radius: 8px !important;
+}
+
+/* ---- expander ---- */
+div[data-testid="stExpander"] {
+    background-color: #1a1d27 !important;
+    border: 1px solid #2a2d3a !important;
+    border-radius: 8px !important;
+}
+
+/* ---- selectbox and inputs ---- */
+div[data-testid="stSelectbox"] > div {
+    background-color: #1a1d27 !important;
+    border: 1px solid #2a2d3a !important;
+    border-radius: 8px !important;
+    color: #ffffff !important;
+}
+
+/* ---- caption text ---- */
+div[data-testid="stCaptionContainer"] {
+    color: #888899 !important;
+}
