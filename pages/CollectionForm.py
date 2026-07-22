@@ -8,7 +8,7 @@ from datetime import datetime
 from drug_data import DRUG_CATALOG
 
 # ---- page config MUST be first ----
-st.set_page_config(page_title="Data Collection", page_icon="📋", layout="wide")
+st.set_page_config(page_title="Data Collection", layout="wide")
 
 # ---- simple password protection ----
 password = st.text_input("Enter password to access this form", type="password")

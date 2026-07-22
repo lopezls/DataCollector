@@ -3,9 +3,9 @@ import pandas as pd
 import streamlit as st
 import os
 
-st.set_page_config(page_title="Raw Data", page_icon="📄", layout="wide")
+st.set_page_config(page_title="Raw Data", layout="wide")
 
-st.title("📄 Raw Data")
+st.title("Raw Data")
 
 with st.expander("About this dataset"):
     st.markdown("""

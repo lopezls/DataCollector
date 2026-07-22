@@ -5,11 +5,11 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from drug_data import DRUG_CATALOG
 
-st.set_page_config(page_title="Drug Catalog", page_icon="💊", layout="wide")
+st.set_page_config(page_title="Drug Catalog", layout="wide")
 
-st.title("💊 Drug Catalog")
+st.title("Drug Catalog")
 
-with st.expander("ℹ️ About this catalog"):
+with st.expander("About this catalog"):
     st.markdown("""
     This catalog lists specialty medications tracked within this platform along with 
     their therapeutic categories. Categories are automatically assigned to every 

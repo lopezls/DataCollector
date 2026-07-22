@@ -4,8 +4,8 @@ import pandas as pd
 import plotly.express as px
 import os
 
-st.set_page_config(page_title="Analytics", page_icon="📈", layout="wide")
-st.title("📈 Analytics Dashboard")
+st.set_page_config(page_title="Analytics", layout="wide")
+st.title("Analytics Dashboard")
 st.caption("All metrics reflect current month unless otherwise noted.")
 st.divider()
 
