@@ -21,4 +21,5 @@ DRUG_CATALOG = {
     "Jascayd": "Respiratory",
     "Austedo": "Neurology",
     "Xtandi": "Oncology",
+    "Cabometyx": "Oncology",
 }

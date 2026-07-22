@@ -10,16 +10,76 @@ st.set_page_config(
 )
 
 st.markdown("""
-<style
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 * {
     font-family: 'Inter', sans-serif !important;
 }
 
-</style>
+
 </style>
 """, unsafe_allow_html=True)
+
+#--base data-----
+# ---- database functions ----
+def get_connection():
+    return sqlite3.connect("pharmacy_data.db")
+
+def create_table():
+    conn = get_connection()
+    conn.execute("""
+        CREATE TABLE IF NOT EXISTS entries (
+            id                     INTEGER PRIMARY KEY AUTOINCREMENT,
+            timestamp              TEXT NOT NULL,
+            drug_name              TEXT,
+            category               TEXT,
+            counseling             TEXT,
+            language               TEXT,
+            depression_survey      TEXT,
+            adherence_survey       TEXT,
+            food_insecurity_survey TEXT,
+            ades_reported          TEXT,
+            ades_details           TEXT
+        )
+    """)
+    conn.commit()
+    conn.close()
+
+def seed_data():
+    conn = get_connection()
+    count = conn.execute("SELECT COUNT(*) FROM entries").fetchone()[0]
+    if count == 0:
+        sample_entries = [
+            #--sample data starts here--#
+            #--('timestamp', 'drug_name', 'category', 'counseling', 'language', 'depression_survey', 'adherence_survey', 'food_insecurity_survey', 'ades_reported', ades_details),--#
+            ('2026-06-01 12:12:00', 'Dupixent', 'Autoimmune', 'Yes', 'English', 'Yes', 'Yes', 'No', 'No', None),
+            ('2026-06-01 12:12:00', 'Dupixent', 'Autoimmune', 'Yes', 'Spanish', 'Yes', 'No', 'No', 'No', None),
+            ('2026-06-01 12:12:00', 'Rezdiffra', 'Hepatology', 'Yes', 'Spanish', 'Yes', 'Yes', 'Yes', 'Yes', 'Diarrhea'),
+            ('2026-06-01 12:12:00', 'Jascayd', 'Respiratory', 'Yes', 'Spanish', 'Yes', 'Yes', 'Yes', 'Yes', 'Diarrhea'),
+            ('2026-06-01 12:12:00', 'Cabometyx', 'Oncology', 'Yes', 'Spanish', 'Yes', 'Yes', 'Yes', 'Yes', 'Fatigue'),
+            ('2026-06-01 12:12:00', 'Nemluvio', 'Autoimmune', 'Yes', 'English', 'Yes', 'No', 'No', 'No', None),
+            ('2026-06-01 12:12:00', 'Jascayd', 'Respiratory', 'Yes', 'English', 'Yes', 'Yes', 'Yes', 'Yes', 'Headache'),
+            ('2026-06-01 12:12:00', 'Nemluvio', 'Autoimmune', 'Yes', 'English', 'Yes', 'No', 'No', 'No', None),
+            ('2026-06-01 12:12:00', 'Jascayd', 'Respiratory', 'Yes', 'English', 'Yes', 'Yes', 'Yes', 'Yes', 'Depression'),
+            ('2026-06-01 12:12:00', 'Nemluvio', 'Autoimmune', 'Yes', 'English', 'Yes', 'No', 'No', 'No', None),
+            ('2026-06-01 12:12:00', 'Austedo', 'Neurology', 'Yes', 'English', 'Yes', 'Yes', 'Yes', 'Yes', 'Dry Mouth'),
+            ('2026-06-01 12:12:00', 'Ohtuvayre', 'Respiratory', 'Yes', 'English', 'Yes', 'Yes', 'Yes', 'Yes', 'Back Pain'),
+        ]
+        conn.executemany("""
+            INSERT INTO entries (
+                timestamp, drug_name, category, counseling, language,
+                depression_survey, adherence_survey,
+                food_insecurity_survey, ades_reported, ades_details
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, sample_entries)
+        conn.commit()
+    conn.close()
+
+# ---- runs once on startup ----
+create_table()
+seed_data()
+
 
 # ---- header ----
 st.title("💊 Specialty Pharmacy Clinical Documentation & Analytics Platform")
