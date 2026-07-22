@@ -9,19 +9,6 @@ st.set_page_config(
     layout="wide"
 )
 
-st.markdown("""
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-* {
-    font-family: 'Inter', sans-serif !important;
-}
-
-
-</style>
-""", unsafe_allow_html=True)
-
-#--base data-----
 # ---- database functions ----
 def get_connection():
     return sqlite3.connect("pharmacy_data.db")
@@ -51,8 +38,6 @@ def seed_data():
     count = conn.execute("SELECT COUNT(*) FROM entries").fetchone()[0]
     if count == 0:
         sample_entries = [
-            #--sample data starts here--#
-            #--('timestamp', 'drug_name', 'category', 'counseling', 'language', 'depression_survey', 'adherence_survey', 'food_insecurity_survey', 'ades_reported', ades_details),--#
             ('2026-06-01 12:12:00', 'Dupixent', 'Autoimmune', 'Yes', 'English', 'Yes', 'Yes', 'No', 'No', None),
             ('2026-06-01 12:12:00', 'Dupixent', 'Autoimmune', 'Yes', 'Spanish', 'Yes', 'No', 'No', 'No', None),
             ('2026-06-01 12:12:00', 'Rezdiffra', 'Hepatology', 'Yes', 'Spanish', 'Yes', 'Yes', 'Yes', 'Yes', 'Diarrhea'),
@@ -76,10 +61,32 @@ def seed_data():
         conn.commit()
     conn.close()
 
+# ---- custom KPI card ----
+def kpi_card(label, value):
+    st.markdown(f"""
+        <div style="
+            background-color: #16253a;
+            border: 1px solid #4a90e2;
+            border-radius: 12px;
+            padding: 20px 24px;
+            text-align: center;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        ">
+            <div style="font-size: 13px; color: #acd5f1; margin-bottom: 8px;">
+                 {label}
+            </div>
+            <div style="font-size: 32px; font-weight: 700; color: #ffffff;">
+                {value}
+            </div>
+        </div>
+    """, unsafe_allow_html=True)
+
 # ---- runs once on startup ----
 create_table()
 seed_data()
-
 
 # ---- header ----
 st.title("💊 Specialty Pharmacy Clinical Documentation & Analytics Platform")
@@ -121,7 +128,7 @@ with col3:
 
 st.divider()
 
-# ---- quick stats if data exists ----
+# ---- platform summary ----
 db_path = "pharmacy_data.db"
 
 if os.path.exists(db_path):
@@ -129,7 +136,7 @@ if os.path.exists(db_path):
     total = conn.execute("SELECT COUNT(*) FROM entries").fetchone()[0]
     counseled = conn.execute("SELECT COUNT(*) FROM entries WHERE counseling = 'Yes'").fetchone()[0]
     ades = conn.execute("SELECT COUNT(*) FROM entries WHERE ades_reported = 'Yes'").fetchone()[0]
-    
+
     top_drug_result = conn.execute("""
         SELECT drug_name, COUNT(*) as count
         FROM entries
@@ -137,21 +144,20 @@ if os.path.exists(db_path):
         ORDER BY count DESC
         LIMIT 1
     """).fetchone()
-    
+
     top_drug = top_drug_result[0] if top_drug_result else "N/A"
-    
     conn.close()
-    
-    st.subheader("★Platform Summary")
+
+    st.subheader("★ Platform Summary")
     m1, m2, m3, m4 = st.columns(4)
     with m1:
-        st.metric("Total Encounters Logged", total)
+        kpi_card("Total Encounters", total)
     with m2:
-        st.metric("Counseling Sessions", counseled)
+        kpi_card("Counseling Sessions", counseled)
     with m3:
-        st.metric("ADEs Tracked", ades)
+        kpi_card("ADEs Tracked", ades)
     with m4:
-        st.metric("Top Drug", f"{top_drug}")
+        kpi_card("Top Drug", top_drug)
 else:
     st.info("No data yet — submit your first encounter using the Data Collection form in the sidebar.")
 
@@ -160,8 +166,8 @@ st.divider()
 # ---- about section ----
 st.markdown("### About This Project")
 st.markdown("""
-This platform was designed and built by a practicing Senior Specialty Consultative Pharmacist 
-to address a gap in clinical metrics tracking within specialty pharmacy patient management programs. 
+This platform was designed and built by a Pharmacist
+to address a gap in clinical metrics tracking within specialty pharmacy patient management programs.
 Every feature was informed by firsthand clinical workflow experience.
 
 **Tech Stack:** Python · Streamlit · SQLite · Plotly  
