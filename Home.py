@@ -9,6 +9,22 @@ st.set_page_config(
     layout="wide"
 )
 
+#--font change
+
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif !important;
+}
+
+p, h1, h2, h3, h4, h5, h6, span, div, label, button {
+    font-family: 'Inter', sans-serif !important;
+}
+</style>
+""", unsafe_allow_html=True)
+
 # ---- database functions ----
 def get_connection():
     return sqlite3.connect("pharmacy_data.db")
