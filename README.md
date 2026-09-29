@@ -5,6 +5,7 @@ workflow gap in specialty pharmacy patient management programs.
 
 **Live Demo:** [lopezls-datacollector.streamlit.app](https://lopezls-datacollector.streamlit.app)  
 **Analysis Report:** [View on GitHub Wiki](https://github.com/lopezls/DataCollector/wiki/Analysis)
+**App Walkthrough:** [View on GitHub Wiki](https://github.com/lopezls/DataCollector/wiki/App-Walkthrough)
 
 ---
 
