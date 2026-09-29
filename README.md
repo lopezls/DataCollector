@@ -17,13 +17,15 @@ built to capture structured encounter data and surface real-time
 clinical insights that did not previously exist in a structured form.
 
 <p align="center">
-  <img src="home-page.png" width="90%" alt="Analytics dashboard" />
+  <img src="images-data%20collector/home-page.png" width="50%" alt="Analytics dashboard" />
 </p>
 
 <p align="center">
-  <img src="collection-form.png" width="45%" alt="Encounter entry form" />
-  &nbsp;
-  <img src="ade-distribution.png" width="45%" alt="ADE trends chart" />
+  <img src="images-data%20collector/collection-form.png" width="50%" alt="Encounter entry form" />
+</p>
+
+<p align="center">
+  <img src="images-data%20collector/ade-distribution.png" width="50%" alt="ADE trends chart" />
 </p>
 
 ## Features
