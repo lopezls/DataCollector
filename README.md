@@ -16,7 +16,15 @@ aggregate level. This platform was independently designed and
 built to capture structured encounter data and surface real-time 
 clinical insights that did not previously exist in a structured form.
 
----
+<p align="center">
+  <img src="home-page.png" width="90%" alt="Analytics dashboard" />
+</p>
+
+<p align="center">
+  <img src="collection-form.png" width="45%" alt="Encounter entry form" />
+  &nbsp;
+  <img src="ade-distribution.png" width="45%" alt="ADE trends chart" />
+</p>
 
 ## Features
 
